@@ -1,3 +1,4 @@
+/// <reference types="chrome"/>
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 
