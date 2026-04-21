@@ -14,6 +14,14 @@ const Navbar = () => {
         localStorage.removeItem('isAuthenticated')
         localStorage.removeItem('userEmail')
         window.location.href = '/login'
+        const EXT_ID = 'ciddfioofmkjdonigbnmonlbkomhmomb'
+    try {
+        chrome.runtime.sendMessage(EXT_ID, { action: 'clear-tokens' })
+    } catch (e) {
+        console.warn('Could not clear extension tokens:', e)
+    }
+
+    window.location.href = '/login'
     }
 
     useEffect(() => {

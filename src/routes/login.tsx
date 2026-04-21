@@ -5,6 +5,7 @@ export const Route = createFileRoute('/login')({
   component: LoginComponent,
 })
 
+const EXT_ID = 'ciddfioofmkjdonigbnmonlbkomhmomb'
 function LoginComponent() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -21,6 +22,7 @@ function LoginComponent() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ username, password }),
       })
 
@@ -32,6 +34,15 @@ function LoginComponent() {
         localStorage.setItem('isAuthenticated', 'true')
         localStorage.setItem('userEmail', username)
         
+         try {
+          chrome.runtime.sendMessage(EXT_ID, {
+            action: 'set-tokens',
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken
+          })
+        } catch (e) {
+          console.warn('Could not send tokens to extension:', e)
+        }
         navigate({ to: '/vocabulary' })
       } else {
         setHasError(true)

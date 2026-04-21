@@ -85,9 +85,9 @@ function Vocabulary() {
               vocabs.map((item: any, index) => (
                 <div key={index} className="grid grid-cols-12 gap-4 py-8 border-b border-gray-100 text-[15px] items-start hover:bg-gray-50/50 transition-all">
                   <div className="col-span-1"></div>
-                  <div className="col-span-3 font-semibold text-gray-900">{item.word?.word}</div>
-                  <div className="col-span-3 text-gray-500 font-mono">{item.word?.pronunciation}</div>
-                  <div className="col-span-5 text-gray-600 leading-relaxed pr-4">{item.word?.meaning}</div>
+                  <div className="col-span-3 font-semibold text-gray-900">{item.word?.term}</div>
+                  <div className="col-span-3 text-gray-500 font-mono">{item.word?.phonetic}</div>
+                  <div className="col-span-5 text-gray-600 leading-relaxed pr-4">{item.word?.definitions[0]?.def}</div>
                 </div>
               ))
             )}
